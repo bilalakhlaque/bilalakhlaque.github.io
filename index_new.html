@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bilal Akhlaque | Portfolio</title>
+  <meta name="description" content="Software Engineering and Data Science portfolio for Bilal Akhlaque." />
+
+  <style>
+    :root {
+      --bg: #f7f1e6;
+      --panel: #fffaf0;
+      --panel-2: #efe3d0;
+      --text: #1f1f1f;
+      --muted: #6d675f;
+      --line: #ded2bf;
+      --accent: #8b5e34;
+      --accent-dark: #5f3d22;
+      --white: #ffffff;
+      --shadow: 0 18px 50px rgba(75, 52, 32, 0.12);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 32px 22px;
+      border-right: 1px solid var(--line);
+      background: rgba(255, 250, 240, 0.82);
+      backdrop-filter: blur(18px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .brand {
+      position: absolute;
+      top: 28px;
+      left: 22px;
+      right: 22px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.1rem;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nav a {
+      color: var(--muted);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: 0.18s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--text);
+      background: var(--white);
+      box-shadow: 0 8px 30px rgba(75, 52, 32, 0.08);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    section {
+      padding: 88px clamp(24px, 6vw, 92px);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(8px);
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    .hero::before {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(139, 94, 52, 0.22), transparent 62%);
+      top: 16%;
+      left: 10%;
+    }
+
+    .hero::after {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(197, 154, 104, 0.28), transparent 64%);
+      right: -10%;
+      bottom: 2%;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(180px, 270px) minmax(0, 760px);
+      gap: 56px;
+      align-items: center;
+    }
+
+    .portrait {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f5e5cf, #d8c4aa);
+      border: 8px solid rgba(255, 255, 255, 0.75);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      color: var(--accent-dark);
+      font-size: 4.3rem;
+      font-weight: 800;
+      letter-spacing: -0.08em;
+    }
+
+    .eyebrow {
+      color: var(--accent-dark);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.78rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6.6rem);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+      margin-bottom: 24px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.45rem);
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 34px;
+    }
+
+    .badge {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.48);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--text);
+      transition: 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn.primary {
+      background: var(--text);
+      color: var(--white);
+      border-color: var(--text);
+    }
+
+    .section-header {
+      max-width: 780px;
+      margin-bottom: 36px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin-bottom: 14px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 250, 240, 0.85);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: 0 10px 35px rgba(75, 52, 32, 0.06);
+      transition: 0.18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.45rem;
+      letter-spacing: -0.035em;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .chip {
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--panel-2);
+      color: var(--accent-dark);
+    }
+
+    .card-link {
+      color: var(--accent-dark);
+      font-weight: 900;
+    }
+
+    .about-box,
+    .skills-box,
+    .education-box {
+      background: rgba(255, 250, 240, 0.85);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: 0 10px 35px rgba(75, 52, 32, 0.06);
+      max-width: 1000px;
+    }
+
+    .about-box p,
+    .education-box p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .skill-groups {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .skill-group h3 {
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .skill-group p {
+      color: var(--muted);
+    }
+
+    .floating-resume {
+      position: fixed;
+      right: 24px;
+      bottom: 22px;
+      z-index: 50;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: var(--text);
+      color: var(--white);
+      font-weight: 900;
+      box-shadow: var(--shadow);
+      transition: 0.18s ease;
+    }
+
+    .floating-resume:hover {
+      transform: translateY(-3px);
+      background: var(--accent-dark);
+    }
+
+    footer {
+      padding: 36px clamp(24px, 6vw, 92px) 88px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        border-right: 0;
+        border-top: 1px solid var(--line);
+        justify-content: flex-start;
+      }
+
+      .brand {
+        display: none;
+      }
+
+      .nav {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 8px;
+      }
+
+      .nav a {
+        white-space: nowrap;
+        padding: 10px 14px;
+      }
+
+      section {
+        padding: 64px 22px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .portrait {
+        width: 150px;
+        height: 150px;
+        font-size: 3rem;
+      }
+
+      .card-grid,
+      .skill-groups {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-resume {
+        right: 16px;
+        bottom: 82px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">Bilal Akhlaque</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="active" href="#home">Home</a>
+        <a href="#featured">Featured</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-grid">
+          <div class="portrait" aria-label="Bilal Akhlaque initials">BA</div>
+
+          <div>
+            <div class="eyebrow">Software Engineering & Data Science</div>
+            <h1>Bilal<br />Akhlaque</h1>
+            <p class="subtitle">
+              Computer Science graduate focused on backend systems, cloud applications, AI tooling, and data-driven software development.
+            </p>
+
+            <div class="badges">
+              <span class="badge">Backend Systems</span>
+              <span class="badge">Cloud Computing</span>
+              <span class="badge">AI Infrastructure</span>
+              <span class="badge">Data Science</span>
+            </div>
+
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/bilalakhlaque" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn" href="https://linkedin.com/in/bilalaakhlaque" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="btn" href="#featured">View Projects</a>
+              <a class="btn" href="https://docs.google.com/document/d/1m_Pj1V8L4a3FtmRaIJO_Thr811CsrOo1/edit?usp=sharing&amp;ouid=105212580469903264939&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">View Resume</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="featured">
+        <div class="section-header">
+          <h2>Featured Projects</h2>
+          <p>Selected work across backend systems, AI infrastructure, cloud applications, game systems, and JavaScript fundamentals.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <h3>Smart Job Executor</h3>
+            <p>Cloud-native job execution platform with asynchronous processing, REST APIs, Redis queues, Docker, and DynamoDB-backed job status tracking.</p>
+            <div class="stack">
+              <span class="chip">Python</span>
+              <span class="chip">Flask</span>
+              <span class="chip">Redis</span>
+              <span class="chip">Docker</span>
+              <span class="chip">AWS</span>
+              <span class="chip">DynamoDB</span>
+            </div>
+            <a class="card-link" href="https://github.com/bilalakhlaque/final_project_cc" target="_blank" rel="noopener">View Repository →</a>
+          </article>
+
+          <article class="card">
+            <h3>SentinAI Gateway</h3>
+            <p>Full-stack TypeScript AI gateway and analytics platform with multi-provider LLM integration, model comparison, caching, authentication, and dashboards.</p>
+            <div class="stack">
+              <span class="chip">TypeScript</span>
+              <span class="chip">React</span>
+              <span class="chip">Node.js</span>
+              <span class="chip">Express</span>
+              <span class="chip">OpenAPI</span>
+              <span class="chip">Zod</span>
+            </div>
+            <a class="card-link" href="https://github.com/bilalakhlaque/AI-Gateway-Sentinel" target="_blank" rel="noopener">View Repository →</a>
+          </article>
+
+          <article class="card">
+            <h3>Ghostpine Ascent</h3>
+            <p>3D top-down Unity game system featuring procedural terrain generation, A* pathfinding, modular gameplay systems, raycast interactions, and Blender assets.</p>
+            <div class="stack">
+              <span class="chip">C#</span>
+              <span class="chip">Unity</span>
+              <span class="chip">.NET</span>
+              <span class="chip">ShaderLab</span>
+              <span class="chip">HLSL</span>
+              <span class="chip">Blender</span>
+            </div>
+            <a class="card-link" href="https://github.com/bilalakhlaque/GhostpineAscent" target="_blank" rel="noopener">View Repository →</a>
+          </article>
+
+          <article class="card">
+            <h3>JavaScript 30 Days</h3>
+            <p>Daily JavaScript practice repository focused on core fundamentals, DOM manipulation, browser APIs, event handling, and frontend problem solving.</p>
+            <div class="stack">
+              <span class="chip">JavaScript</span>
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">DOM</span>
+              <span class="chip">Browser APIs</span>
+            </div>
+            <a class="card-link" href="https://github.com/bilalakhlaque/JavaScript_30_Days" target="_blank" rel="noopener">View Repository →</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="section-header">
+          <h2>About Me</h2>
+        </div>
+        <div class="about-box">
+          <p>
+            I am a Computer Science graduate with a concentration in Data Science and Software Engineering. My work spans backend development, cloud computing, AI infrastructure, data analytics, and full-stack software projects.
+          </p>
+          <p>
+            I enjoy building practical systems that connect clean engineering with real-world use cases, whether that means developing REST APIs, deploying cloud services, building dashboards, or analyzing data to support better decisions.
+          </p>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="section-header">
+          <h2>Education</h2>
+        </div>
+        <div class="education-box">
+          <h3>The University of Texas at San Antonio</h3>
+          <p>Bachelor of Science in Computer Science</p>
+          <p>Concentration: Data Science & Software Engineering</p>
+          <p>Minor: Business Administration</p>
+          <p>Relevant Coursework: Machine Learning, Artificial Intelligence, Data Science, Operating Systems, Algorithms, Data Structures, Cloud Computing, and Database Systems.</p>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="section-header">
+          <h2>Skills</h2>
+        </div>
+        <div class="skills-box">
+          <div class="skill-groups">
+            <div class="skill-group">
+              <h3>Languages</h3>
+              <p>Python, C, C#, Java, JavaScript, TypeScript, Dart, SQL, PHP, HTML, CSS</p>
+            </div>
+            <div class="skill-group">
+              <h3>Backend & Cloud</h3>
+              <p>Flask, REST APIs, Node.js, Express, Docker, Redis, AWS EC2/S3, DynamoDB, Linux, Nginx</p>
+            </div>
+            <div class="skill-group">
+              <h3>Data & Tools</h3>
+              <p>Pandas, NumPy, Matplotlib, Plotly, PyTorch, Power BI, MySQL, Git, Jupyter Notebook</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-header">
+          <h2>Contact</h2>
+          <p>Open to software engineering, backend development, cloud, and data-focused opportunities.</p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="mailto:bilalaakhlaque.cse@outlook.com">Email Me</a>
+          <a class="btn" href="https://github.com/bilalakhlaque" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://linkedin.com/in/bilalaakhlaque" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </section>
+
+      <footer>
+        © 2026 Bilal Akhlaque. Built with HTML and CSS.
+      </footer>
+    </main>
+  </div>
+
+  <a class="floating-resume" href="https://docs.google.com/document/d/1m_Pj1V8L4a3FtmRaIJO_Thr811CsrOo1/edit?usp=sharing&amp;ouid=105212580469903264939&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">PDF Resume</a>
+</body>
+</html>
