@@ -412,6 +412,20 @@
         right: 16px;
         bottom: 82px;
       }
+      
+      .profile-pic{
+	width:180px;
+	height:180px;
+	border-radius:50%;
+	overflow:hidden;
+	border:3px solid #d9cbb5;
+      }
+	
+      .profile-pic img{
+	width:100%;
+	height:100%;
+	object-fit:cover;
+      }
     }
   </style>
 </head>
@@ -432,7 +446,9 @@
     <main>
       <section id="home" class="hero">
         <div class="hero-grid">
-          <div class="portrait" aria-label="Bilal Akhlaque initials">BA</div>
+          <div class="profile-pic" 
+	  	<img src="assets/profile.jpg" alt="Bilal Akhlaque">
+          </div>
 
           <div>
             <div class="eyebrow">Software Engineering & Data Science</div>
